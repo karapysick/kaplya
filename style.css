@@ -1,0 +1,655 @@
+/* ========== БАЗОВАЯ ПАЛИТРА ========== */
+:root{
+  --blue-50:#E0F7FA;
+  --blue-100:#BBDEFB;
+  --blue-300:#4FC3F7;
+  --blue-400:#42A5F5;
+
+  --green-50:#E8F5E9;
+  --green-200:#C8E6C9;
+  --green-400:#66BB6A;
+  --green-600:#43A047;
+  --green-700:#2E7D32;
+
+  --text:#333333;
+  --muted:#666666;
+  --white:#FFFFFF;
+  --shadow:0 4px 12px rgba(0,0,0,0.08);
+  --shadow-hover:0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Сброс */
+*{ margin:0; padding:0; box-sizing:border-box; }
+html,body{ height:100%; }
+
+body{
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  background: linear-gradient(90deg, var(--blue-50), var(--green-50));
+}
+
+/* ========== ШАПКА ========== */
+header{
+  text-align:center;
+  padding: 30px 20px;
+  background: linear-gradient(90deg, var(--blue-300), var(--green-400));
+  color: var(--white);
+  border-bottom: 5px solid var(--green-700);
+}
+header .logo{
+  max-width: 90%;
+  height:auto;
+  margin-bottom:15px;
+  border-radius:10px;
+  box-shadow: var(--shadow);
+}
+header p{
+  font-size:18px;
+  color:#EAF7ED;
+}
+
+/* ========== КАТЕГОРИИ (верхний ряд) ========== */
+.categories{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:30px;
+  padding:30px 0;
+  margin:20px 0;
+  background-color: var(--white);
+  border-radius:12px;
+  box-shadow: var(--shadow);
+}
+.category-item{
+  text-align:center;
+  cursor:pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.category-item:hover{ transform: translateY(-3px); }
+.category-item:focus-visible .category-icon{
+  box-shadow: 0 0 0 4px rgba(79,195,247,.35);
+}
+.category-icon{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow: var(--shadow);
+  border:4px solid var(--green-200);
+  background-color: var(--white);
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.category-item:hover .category-icon{
+  border-color: var(--blue-300);
+  box-shadow: 0 0 14px rgba(79,195,247,.45);
+}
+.category-name{
+  display:block;
+  margin-top:10px;
+  font-size:16px;
+  color: var(--green-700);
+  font-weight:bold;
+}
+/* Активная категория — выделение */
+.category-item.active .category-icon{
+  border:4px solid var(--green-700);
+  box-shadow: 0 0 14px rgba(46,125,50,.35);
+}
+
+/* ========== ПОДКАТЕГОРИИ ========== */
+.subcategories{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:30px;
+  padding:30px 0;
+  margin:20px 0;
+  background: var(--white);
+  border-radius:12px;
+  box-shadow: var(--shadow);
+}
+.subcategories .category-item{ transition: transform .25s ease; }
+.subcategories .category-item:hover{ transform: translateY(-3px); }
+.subcategories .category-icon{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow: var(--shadow);
+  border:3px solid var(--blue-100);
+}
+.subcategories .category-item.active .category-icon{
+  border-color: var(--green-700);
+  box-shadow: 0 0 12px rgba(46,125,50,.35);
+}
+
+/* ========== КАТАЛОГ ТОВАРОВ ========== */
+.catalog{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap:20px;
+  padding:20px;
+  margin:20px 0;
+}
+
+/* Карточка товара */
+.product{
+  background: var(--white);
+  border:1px solid var(--green-200);
+  border-radius:12px;
+  overflow:hidden;
+  text-align:center;
+  padding:15px;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  max-width: 100%;
+  margin:0 auto;
+  box-shadow: var(--shadow);
+}
+.product:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--blue-100);
+}
+.product img{
+  width:100%;
+  height:180px;
+  object-fit: contain;
+  display:block;
+  margin:0 auto 12px;
+  border-radius:8px;
+  border:1px solid #EEF0F2;
+  background: #FAFAFA;
+}
+/* Название товара */
+.product h3{
+  margin:8px 0 6px;
+  font-size:16px;
+  color: var(--green-700);
+  font-weight:bold;
+  line-height:1.4;
+}
+/* Описание товара */
+.product p{
+  color: var(--muted);
+  font-size:14px;
+  margin-bottom:12px;
+  line-height:1.5;
+  text-align:center;
+}
+/* Цена */
+.price{
+  font-weight:bold;
+  color:#D32F2F;
+  font-size:15px;
+  margin-top:8px;
+}
+
+/* ========== ПОДВАЛ ========== */
+footer{
+  text-align:center;
+  padding:20px;
+  background-color: var(--white);
+  color: var(--green-700);
+  margin-top:30px;
+  font-size:14px;
+  border-top: 1px solid var(--green-200);
+  box-shadow: var(--shadow);
+  border-radius:12px;
+}
+footer a{
+  color: var(--green-700);
+  text-decoration:none;
+  font-weight:bold;
+}
+footer a:hover{ text-decoration:underline; }
+
+/* ========== КНОПКИ ========== */
+.back-button{
+  display:block;
+  margin:0 auto 20px;
+  padding:10px 20px;
+  background-color: var(--green-600);
+  color: var(--white);
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:16px;
+  width:fit-content;
+  transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  box-shadow: var(--shadow);
+}
+.back-button:hover{
+  background-color: var(--blue-300);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+.back-button:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(79,195,247,.35);
+}
+html{ scroll-behavior: smooth; } /* плавная прокрутка для якорей и скролла */
+
+#toTop{
+  padding:10px 14px;
+  opacity: 0.95;
+}
+
+
+/* ========== БЛОК «КАПЕЛЬНЫЙ ПОЛИВ» ВНУТРИ КАТАЛОГА (вариант Б) ========== */
+.catalog .drip{
+  grid-column: 1 / -1;      /* растянуть на всю ширину сетки каталога */
+  margin-bottom: 30px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+/* Заголовок и вступление */
+.drip h2{
+  margin-bottom: 10px;
+  color: var(--green-700);
+  font-size: 28px;
+  line-height: 1.25;
+}
+.drip p{ color: var(--text); margin-bottom: 16px; }
+
+/* Галерея 4 фото (адаптивно) */
+.drip .drip-gallery{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 16px 0 8px;
+}
+.drip .drip-gallery figure{
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--green-200);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.drip .drip-gallery figure:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.drip .drip-gallery img{
+  width: 100%;
+  height: 220px;          /* можно 240 для более высокого кадра */
+  object-fit: cover;
+  display: block;
+}
+.drip .drip-gallery figcaption{
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Текстовые блоки внутри drip */
+.drip .drip-benefits,
+.drip .drip-kit{
+  background: var(--green-50);
+  border: 1px solid var(--green-200);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 12px;
+}
+.drip .drip-benefits h3,
+.drip .drip-kit h3{
+  margin-bottom: 8px;
+  color: var(--green-700);
+  font-size: 18px;
+}
+.drip .drip-benefits ul{ padding-left: 18px; color: var(--text); }
+
+/* ========== ДОП. АДАПТИВНОСТЬ ========== */
+@media (max-width: 480px){
+  .category-icon{ width:100px; height:100px; }
+  .subcategories .category-icon{ width:90px; height:90px; }
+  .drip .drip-gallery img{ height: 180px; }
+}
+@media (max-width: 360px){
+  .category-name{ font-size:14px; }
+  .product h3{ font-size:15px; }
+  .product p{ font-size:13px; }
+}
+@media (min-width: 1200px){
+  .categories, .subcategories{ gap:36px; }
+}
+
+/* Sticky: верхние категории + подкатегории */
+.sticky-wrap{
+  position: sticky;
+  top: 0;                  /* прилипает к верху окна */
+  z-index: 20;
+  background: linear-gradient(90deg, var(--blue-50), var(--green-50));
+  padding-top: 6px;
+  margin: -6px 0 8px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.sticky-wrap .categories,
+.sticky-wrap .subcategories{
+  box-shadow: none;        /* без лишней тени внутри липкой области */
+  margin: 8px auto;
+}
+
+/* чуть компактнее внутри sticky */
+.sticky-wrap .categories{ padding: 16px 0; gap: 22px; }
+.sticky-wrap .subcategories{ padding: 14px 0; gap: 18px; }
+
+/* ========= Мобильная адаптация ========= */
+
+/* Базовые размеры для телефонов */
+@media (max-width: 768px){
+  header{ padding: 20px 14px; }
+  header .logo{ max-width: 96%; }
+
+  .categories,
+  .subcategories{
+    padding: 14px 0;
+    gap: 16px;
+    margin: 12px 0;
+    border-radius: 10px;
+  }
+
+  /* Горизонтальный скролл для категорий/подкатегорий — удобно большим пальцем */
+  .categories,
+  .subcategories{
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .categories::-webkit-scrollbar,
+  .subcategories::-webkit-scrollbar{ height: 6px; }
+
+  .category-icon{ width: 90px; height: 90px; }
+  .category-name{ font-size: 14px; }
+
+  /* Каталог — 2 колонки при ширине экрана до 768 */
+  .catalog{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding: 12px;
+  }
+
+  .product{
+    padding: 12px;
+    border-radius: 10px;
+  }
+  .product img{
+    height: 150px;
+  }
+  .product h3{ font-size: 15px; }
+  .product p{ font-size: 13px; }
+  .price{ font-size: 14px; }
+
+  /* Блок капельного полива внутри каталога — тянутый на всю ширину уже есть.
+     Здесь только адаптируем контент под мобилки */
+  .drip{ padding: 16px; }
+  .drip h2{ font-size: 22px; }
+  .drip p{ font-size: 14px; }
+
+  /* Галерея: по 2 карточки в ряд */
+  .drip .drip-gallery{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 12px 0 6px;
+  }
+  .drip .drip-gallery img{ height: 160px; }
+  .drip .drip-gallery figcaption{ font-size: 13px; padding: 8px; }
+
+  .drip .drip-benefits,
+  .drip .drip-kit{
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  /* Кнопки — во всю ширину, крупная зона тапа */
+  .back-button{
+    width: 100%;
+    max-width: 520px;
+    height: 44px;
+    font-size: 15px;
+  }
+}
+
+/* Очень узкие экраны / старые смартфоны */
+@media (max-width: 480px){
+  .category-icon{ width: 78px; height: 78px; }
+  .category-name{ font-size: 13px; }
+
+  /* Каталог — 1 колонка */
+  .catalog{
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 10px;
+  }
+  .product img{ height: 150px; }
+
+  .drip .drip-gallery img{ height: 150px; }
+}
+
+/* Чтобы липкая панель не «липла» под шапку на мобилках */
+@media (max-width: 768px){
+  .sticky-wrap{
+    top: 0;
+    padding-top: 4px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+}
+
+/* Улучшенные состояния тапа вместо hover на мобильных */
+@media (hover: none){
+  .category-item:active .category-icon,
+  .back-button:active{
+    transform: translateY(1px) scale(0.98);
+    box-shadow: none;
+  }
+}
+
+/* Чуть больше «пальцевой» зоны для клика */
+.category-item{
+  padding: 2px 4px;
+}
+.category-item .category-icon{
+  /* тень и рамки уже есть выше — оставляем */
+}
+
+/* Панель результатов/сортировки — компактней на телефонах */
+@media (max-width: 768px){
+  #catalog-toolbar{
+    gap: 8px !important;
+    flex-wrap: wrap;
+    padding: 0 10px;
+  }
+  #resultsInfo{ font-size: 14px; }
+  #sortSelect{
+    font-size: 14px;
+    padding: 6px 8px;
+    border-radius: 8px;
+  }
+}
+
+/* Кнопка "Наверх" — менее навязчива на телефонах */
+#toTop{
+  right: 12px !important;
+  bottom: 12px !important;
+  padding: 10px 12px;
+  min-width: 44px;
+  min-height: 44px;
+}
+/* ====== FOOTER (полная замена) ====== */
+footer {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 4px solid #a5d6a7;
+}
+
+/* Контейнер секций футера */
+footer .footer-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* Основной вариант с gap */
+  gap: 30px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+/* Фолбэк для браузеров/валидаторов без поддержки gap */
+@supports not (gap: 1rem) {
+  footer .footer-info { margin: 20px -15px; }
+  footer .footer-info > * { margin: 0 15px 15px; }
+}
+
+/* Карточки секций */
+footer .footer-section {
+  background: #f9fff9;
+  padding: 14px 18px;
+  border-radius: 10px;
+  min-width: 240px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+footer .footer-section h4 {
+  color: #1b5e20;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+footer .footer-section p {
+  margin: 4px 0;
+  line-height: 1.5;
+}
+
+/* Ссылки */
+footer .contact-link {
+  color: #2e7d32;
+  text-decoration: none;
+  font-weight: bold;
+}
+footer .contact-link:hover {
+  text-decoration: underline;
+  color: #1b5e20;
+}
+
+/* Дата обновления */
+footer .update-date {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #4caf50;
+}
+
+/* ====== Мобильная адаптация (ставь на корневом уровне, не внутри другого правила!) ====== */
+@media (max-width: 768px) {
+  footer .footer-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  @supports not (gap: 1rem) {
+    footer .footer-info { margin: 16px 0; }
+    footer .footer-info > * { margin: 0 0 12px; }
+  }
+  footer .footer-section {
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+  }
+}
+
+/* Модалка просмотра товара */
+.image-modal {
+  display: none; /* по умолчанию скрыта */
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.image-modal-content {
+  background: #fff;
+  border-radius: 14px;
+  max-width: min(900px, 100%);
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.image-modal-content img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  background: #f4f4f4;
+}
+
+.image-modal-content p {
+  margin: 10px 0 14px;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.image-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 14px;
+  font-size: 30px;
+  color: #333;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.image-modal-close:hover {
+  color: #000;
+}
+
+/* на телефоне */
+@media (max-width: 600px) {
+  .image-modal-content {
+    width: 100%;
+  }
+  .image-modal-content img {
+    max-height: 60vh;
+  }
+}
+/* анимация появления модалки */
+.image-modal {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.image-modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* лёгкий выезд картинки */
+.image-modal-content {
+  transform: translateY(10px);
+  transition: transform 0.2s ease;
+}
+
+.image-modal.show .image-modal-content {
+  transform: translateY(0);
+}
